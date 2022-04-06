@@ -1,36 +1,30 @@
 package main;
 
+
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        // Declaramos variables
-
-        // Ponemos un texto indicando que se introduzcan caracteres
         char entrada;
-        int numeroDeEspacios;
+        int cambios;
 
+        cambios = 0;
         Scanner tecla = new Scanner(System.in);
         do {
             System.out.println("Inserte un Caracter");
             entrada = tecla.nextLine().charAt(0);
             if (entrada >= 97 && entrada <= 122) {
-                numeroDeEspacios++;
+                entrada = (char) (entrada - 32);
+                cambios++;
+            }else if (entrada >= 65 && entrada <= 90) {
+                entrada = (char) (entrada + 32);
+                cambios++;
+            }
+            if (entrada != '.') {
+                System.out.println(entrada);
             }
         }while (entrada != '.');
 
-        System.out.println("Han sido " + numeroDeEspacios + " espacios.");
-        // Bucle do..while
-
-        // Leemos un caracter
-
-        // Si es minúscula la pasamos a mayúscula,
-        // la imprimimos y sumamos uno al número de cambios
-
-        // Si es mayúscula la pasamos a minúscula,
-        // la imprimimos y sumamos uno al número de cambios
-
-        // Nos salimos cuando encontramos un punto
-
-        // Imprimimos el número de cambios
-
+        System.out.println("Se han realizado " + cambios + " cambios.");
     }
 }
