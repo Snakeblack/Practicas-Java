@@ -19,7 +19,7 @@ public class Main {
 //        System.out.println("8-Reinas");
 //        NReinas.resolverReinas(8);
 
-        NReinas.buscarSoluciones();
+        NReinas.resolverReinas(8);
     }
 
 }

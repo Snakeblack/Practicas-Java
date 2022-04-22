@@ -1,4 +1,4 @@
-import java.lang.Math;
+import java.util.Arrays;
 
 /*
 Crea un método resolverReinas(int) en la clase NReinas que imprima por pantalla todas las posibles soluciones del problema de las N-Reinas.
@@ -45,34 +45,19 @@ Para n=5 las soluciones son 10
 
 public class NReinas {
 
-    static void dibujar (int[] tablero) {
 
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (tablero[i] == j) {
-                    System.out.print("|R");
-                }
-                else {
-                    System.out.print("|_");
-                }
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
-
-    static boolean ataque(int[] tablero) {
+    static boolean ataque(int[] tablero, int numTablero) {
         boolean res = false;
 
         //detectamos reinas en la misma columna
-        for (int i = 0; i < 7; i++) {
-            for (int j = i + 1; j < 8; j++) {
+        for (int i = 0; i < numTablero - 1; i++) {
+            for (int j = i + 1; j < numTablero; j++) {
                 if (tablero[i] == tablero[j]) return true;
             }
         }
         //detectamos reinas en las diagonales
-        for (int i = 0; i < 7; i++) {
-            for (int j = i + 1; j < 8; j++) {
+        for (int i = 0; i < numTablero - 1; i++) {
+            for (int j = i + 1; j < numTablero; j++) {
                 if (tablero[i]+i == tablero[j]+j) return true;
                 if (tablero[i]-i == tablero[j]-j) return true;
             }
@@ -81,29 +66,43 @@ public class NReinas {
         return res;
     }
 
-    static void buscarSoluciones() {
-        int cont = 0;
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                for (int k = 0; k < 8; k++) {
-                    for (int l = 0; l < 8; l++) {
-                        for (int m = 0; m < 8; m++) {
-                            for (int n = 0; n < 8; n++) {
-                                for (int o = 0; o < 8; o++) {
-                                    for (int p = 0; p < 8; p++) {
-                                        int [] tablero = {i,j,k,l,m,n,o,p};
-                                        if (!ataque(tablero)) {
-                                            dibujar(tablero);
-                                            cont++;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+    static void resolverReinas(int numTablero) {
+        // int cont = 0;
+        int j = 0;
+        // for (int i = 0; i < numTablero; i++) {
+        //     for (int j = 0; j < numTablero; j++) {
+        //         for (int k = 0; k < numTablero; k++) {
+        //             for (int l = 0; l < numTablero; l++) {
+        //                 for (int m = 0; m < numTablero; m++) {
+        //                     for (int n = 0; n < numTablero; n++) {
+        //                         for (int o = 0; o < numTablero; o++) {
+        //                             for (int p = 0; p < numTablero; p++) {
+        //                                 int [] tablero = {i,j,k,l,m,n,o,p};
+        //                                 if (!ataque(tablero, numTablero)) {
+        //                                     System.out.println(Arrays.toString(tablero) + "\n");
+        //                                     cont++;
+        //                                 }
+        //                             }
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        int [] tablero = new int [numTablero];
+        if(j < numTablero){
+            for (int i = 0; i < numTablero; i++) {
+                tablero[numTablero - 1] = i;
+                resolverReinas(numTablero - 1);
+                if(!ataque(tablero, numTablero)) {
+                    System.out.println(Arrays.toString(tablero) + "\n");
+                    
+                    // cont++;
                 }
             }
+            
         }
-        System.out.println("hay " + cont + " soluciones");
+        // System.out.println("Hay " + cont + " soluciones");
     }
 }
