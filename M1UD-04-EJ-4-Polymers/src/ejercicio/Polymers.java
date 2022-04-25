@@ -25,6 +25,29 @@ public class Polymers {
      * polímero y devuelve el polímero reducido.
      */
     public static String processPolymer(String polymer) {
-        /* ... */
+        String resultado = "";
+        char [] arrPolymer = polymer.toCharArray();
+        int j = 0;
+        int i = 1;
+        while ( j < arrPolymer.length - 1) {
+            if (arrPolymer[j] != (arrPolymer[i] + 32) && arrPolymer[j] != (arrPolymer[i] - 32)) {
+                resultado += arrPolymer[j];
+                j++;
+                i++;
+            } else {
+                i += 2;
+                j += 2;
+            }
+        }
+        if (arrPolymer.length != 0)
+            resultado += arrPolymer[arrPolymer.length - 1];
+
+        return resultado;
+    }
+    
+    
+
+    public static boolean parOrImpar(int num){
+        return num % 2 == 0;
     }
 }
