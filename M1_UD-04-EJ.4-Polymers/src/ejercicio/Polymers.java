@@ -24,30 +24,33 @@ public class Polymers {
      * (mayúsculas y minúsculas excluyendo la Ñ), procesa las reacciones en cadena de dicho
      * polímero y devuelve el polímero reducido.
      */
-    public static String processPolymer(String polymer) {
-        String resultado = "";
-        char [] arrPolymer = polymer.toCharArray();
-        int j = 0;
-        int i = 1;
-        while ( j < arrPolymer.length - 1) {
-            if (arrPolymer[j] != (arrPolymer[i] + 32) && arrPolymer[j] != (arrPolymer[i] - 32)) {
-                resultado += arrPolymer[j];
-                j++;
-                i++;
-            } else {
-                i += 2;
-                j += 2;
+    public static String processPolymer(String polymer)
+    {
+        int len = polymer.length();
+        boolean flag = false;
+
+        while (!flag)
+        {
+            flag = true;
+            for (int i = 0; i < len - 1; i++ )
+            {
+                char j = polymer.charAt(i);
+                char k = polymer.charAt(i+1);
+
+                if ((j > 65 && j < 122 || k > 65 && k < 122) &&
+                    (j == k + 32 || j == k - 32) ||
+                    ( k == j + 32 || k == j - 32))
+                {
+                    String fchar = Character.toString(j);
+                    String schar = Character.toString(k);
+
+                    polymer = polymer.replace(fchar + schar, "");
+                    len = polymer.length();
+                    flag = false;
+                }
             }
+            polymer = polymer.trim();
         }
-        if (arrPolymer.length != 0)
-            resultado += arrPolymer[arrPolymer.length - 1];
-
-        return resultado;
-    }
-    
-    
-
-    public static boolean parOrImpar(int num){
-        return num % 2 == 0;
+        return polymer;
     }
 }
