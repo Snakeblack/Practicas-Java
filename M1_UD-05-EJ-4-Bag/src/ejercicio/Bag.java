@@ -3,7 +3,6 @@ package ejercicio;
 public class Bag {
     /** Añade un elemento a la bolsa */
     public boolean add(Object e) {
-
         return false;
     }
 
