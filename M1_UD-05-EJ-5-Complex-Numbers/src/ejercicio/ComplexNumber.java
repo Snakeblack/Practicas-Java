@@ -44,7 +44,9 @@ public class ComplexNumber {
      * Suma: (a + bi) + (c + di) = (a + c) + (b + d)i
      */
     public ComplexNumber add(ComplexNumber n) {
-
+        ComplexNumber add = new ComplexNumber(real, imaginary);
+        add.real = (this.real + n.real) + ((this.imaginary + n.imaginary) * Math.sqrt(-1));
+        return  add;
     }
 
     /**
@@ -55,7 +57,7 @@ public class ComplexNumber {
      * Resta: (a + bi) - (c + di) = (a - c) + (b - d)i
      */
     public ComplexNumber substract(ComplexNumber n) {
-
+        ComplexNumber substract
     }
 
     /**

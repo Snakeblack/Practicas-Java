@@ -1,32 +1,32 @@
 package ejercicio;
 
-import java.util.EmptyStackException;
-
 public class Stack {
+    private int size;
+    private char[] a;
 
     // Construct an empty Stack given its size.
     public Stack(int size) {
-        return size;
+        this.size = size;
     }
 
     // Construct a Stack from a Stack.
     public Stack(Stack ob) {
-        return ob;
+        this.size = ob.size;
+        this.a = ob.a;
     }
 
     // Construct a stack with initial values.
-    public Stack(char a[]) {
-        return a[0];
+    public Stack(char[] a) {
+        this.a = a;
     }
-
 
     // Push characters onto the stack.
     public void push(char ch) {
-        return ch;
+        this.a[size] = ch;
     }
 
     // Pop a character from the stack.
     public char pop() {
-        return
+        return this.a[size];
     }
 }
