@@ -11,13 +11,14 @@ package ejercicio;
  * los métodos que se incluyen a continuación.
  */
 public class ComplexNumber {
-    private double real;
-    private double imaginary;
+    private final double real;
+    private final double imaginary;
 
     /**
      * Construye un número complejo a partir de su parte real y su parte imaginaria.
      */
-    public ComplexNumber(double real, double imaginary) {
+    public ComplexNumber(double real, double imaginary)
+    {
         this.real = real;
         this.imaginary = imaginary;
     }
@@ -25,14 +26,16 @@ public class ComplexNumber {
     /**
      * Devuelve el valor de la parte real.
      */
-    public double getReal() {
+    public double getReal()
+    {
         return real;
     }
 
     /**
      * Devuelve el valor de la parte imaginaria.
      */
-    public double getImaginary() {
+    public double getImaginary()
+    {
         return imaginary;
     }
 
@@ -43,10 +46,9 @@ public class ComplexNumber {
      * La suma de complejos se define de la siguiente forma:
      * Suma: (a + bi) + (c + di) = (a + c) + (b + d)i
      */
-    public ComplexNumber add(ComplexNumber n) {
-        ComplexNumber add = new ComplexNumber(real, imaginary);
-        add.real = (this.real + n.real) + ((this.imaginary + n.imaginary) * Math.sqrt(-1));
-        return  add;
+    public ComplexNumber add(ComplexNumber n)
+    {
+        return new ComplexNumber(real + n.real, imaginary + n.imaginary);
     }
 
     /**
@@ -56,8 +58,9 @@ public class ComplexNumber {
      * La resta de complejos se define de la siguiente forma:
      * Resta: (a + bi) - (c + di) = (a - c) + (b - d)i
      */
-    public ComplexNumber substract(ComplexNumber n) {
-        ComplexNumber substract
+    public ComplexNumber substract(ComplexNumber n)
+    {
+        return new ComplexNumber(real - n.real, imaginary - n.imaginary);
     }
 
     /**
@@ -67,8 +70,10 @@ public class ComplexNumber {
      * La multiplicación de complejos se define de la siguiente forma:
      * Multiplicación: (a + bi) * (c + di) = (ac – bd) + (ad +bc)i
      */
-    public ComplexNumber multiply(ComplexNumber n) {
-
+    public ComplexNumber multiply(ComplexNumber n)
+    {
+        return new ComplexNumber(real * n.real - imaginary * n.imaginary,
+            real * n.imaginary + imaginary * n.real);
     }
 
     /**
@@ -79,7 +84,10 @@ public class ComplexNumber {
      * División: (a + bi) / (c + di) = ((ac + bd) / (c2 + d2)) + ((bc – ad) / (c2 + d2))i
      */
     public ComplexNumber divide(ComplexNumber n) {
+        double denominator = Math.pow(n.real, 2) + Math.pow(n.imaginary, 2);
 
+        return new ComplexNumber((real * n.real + imaginary * n.imaginary) / denominator, 
+            (imaginary * n.real - real * n.imaginary) / denominator);
     }
 
 
@@ -90,7 +98,18 @@ public class ComplexNumber {
      */
     @Override
     public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
 
+        if (getClass() != obj.getClass())
+            return false;
+
+        final ComplexNumber other = (ComplexNumber) obj;
+
+        if (Double.compare(this.real, other.real) != 0)
+            return false;
+
+        return Double.compare(this.imaginary, other.imaginary) == 0;
     }
 
     /**
@@ -98,7 +117,12 @@ public class ComplexNumber {
      */
     @Override
     public int hashCode() {
+        int hash = 7;
 
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.real) ^ (Double.doubleToLongBits(this.real) >>> 32));
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.imaginary) ^ (Double.doubleToLongBits(this.imaginary) >>> 32));
+
+        return hash;
     }
 
     /** Devuelve una representación en String del número complejo con su representación binomial
@@ -108,7 +132,8 @@ public class ComplexNumber {
      */
     @Override
     public String toString() {
-
+        String sign = imaginary < 0 ? "-" : "+";
+        return real + sign + Math.abs(imaginary) + "i";
     }
 }
 
