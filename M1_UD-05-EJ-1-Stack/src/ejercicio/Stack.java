@@ -7,6 +7,7 @@ public class Stack {
     // Construct an empty Stack given its size.
     public Stack(int size) {
         this.size = size;
+        a = new char[size];
     }
 
     // Construct a Stack from a Stack.
@@ -17,16 +18,32 @@ public class Stack {
 
     // Construct a stack with initial values.
     public Stack(char[] a) {
+        this.size = a.length;
         this.a = a;
     }
 
     // Push characters onto the stack.
     public void push(char ch) {
-        this.a[size] = ch;
+        if (size == a.length) {
+            char[] b = new char[2 * size];
+            System.arraycopy(a, 0, b, 0, size);
+            a = b;
+        }
+        a[size++] = ch;
     }
 
     // Pop a character from the stack.
-    public char pop() {
-        return this.a[size];
+
+    public char pop(){
+        if (size == 0) {
+            return '\0';
+        } else {
+            char[] b = new char[size - 1];
+            if (size > 0) System.arraycopy(a, 0, b, 0, size - 1);
+            char ch = a[size - 1];
+            a = b;
+            size--;
+            return ch;
+        }
     }
 }

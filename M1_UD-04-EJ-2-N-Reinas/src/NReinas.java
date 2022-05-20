@@ -45,64 +45,48 @@ Para n=5 las soluciones son 10
 
 public class NReinas {
 
+    public static void resolverReinas(int n)
+    {
+        int[][] soluciones = new int[n][n];
+        int[] solucion = new int[n];
 
-    static boolean ataque(int[] tablero, int numTablero) {
-        boolean res = false;
-
-        //detectamos reinas en la misma columna
-        for (int i = 0; i < numTablero - 1; i++) {
-            for (int j = i + 1; j < numTablero; j++) {
-                if (tablero[i] == tablero[j]) return true;
-            }
-        }
-        //detectamos reinas en las diagonales
-        for (int i = 0; i < numTablero - 1; i++) {
-            for (int j = i + 1; j < numTablero; j++) {
-                if (tablero[i]+i == tablero[j]+j) return true;
-                if (tablero[i]-i == tablero[j]-j) return true;
-            }
-        }
-
-        return res;
+        resolverReinas(soluciones, solucion, 0);
     }
 
-    static void resolverReinas(int numTablero) {
-        // int cont = 0;
-        int j = 0;
-        // for (int i = 0; i < numTablero; i++) {
-        //     for (int j = 0; j < numTablero; j++) {
-        //         for (int k = 0; k < numTablero; k++) {
-        //             for (int l = 0; l < numTablero; l++) {
-        //                 for (int m = 0; m < numTablero; m++) {
-        //                     for (int n = 0; n < numTablero; n++) {
-        //                         for (int o = 0; o < numTablero; o++) {
-        //                             for (int p = 0; p < numTablero; p++) {
-        //                                 int [] tablero = {i,j,k,l,m,n,o,p};
-        //                                 if (!ataque(tablero, numTablero)) {
-        //                                     System.out.println(Arrays.toString(tablero) + "\n");
-        //                                     cont++;
-        //                                 }
-        //                             }
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-        int [] tablero = new int [numTablero];
-        if(j < numTablero){
-            for (int i = 0; i < numTablero; i++) {
-                tablero[numTablero - 1] = i;
-                resolverReinas(numTablero - 1);
-                if(!ataque(tablero, numTablero)) {
-                    System.out.println(Arrays.toString(tablero) + "\n");
-                    
-                    // cont++;
+    private static void resolverReinas(int[][] soluciones, int[] solucion, int columna)
+    {
+        if (columna == soluciones.length)
+        {
+            System.out.println(Arrays.toString(solucion));
+            System.out.println();
+        } else
+        {
+            for (int i = 0; i < soluciones.length; i++)
+            {
+                solucion[columna] = i;
+                if (esValida(solucion, columna))
+                {
+                    soluciones[columna][i] = 1;
+                    resolverReinas(soluciones, solucion, columna + 1);
+                    soluciones[columna][i] = 0;
                 }
             }
-            
         }
-        // System.out.println("Hay " + cont + " soluciones");
+    }
+
+    private static boolean esValida(int[] solucion, int columna)
+    {
+        for (int i = 0; i < columna; i++)
+        {
+            if (solucion[i] == solucion[columna])
+            {
+                return false;
+            }
+            if (columna - i == Math.abs(solucion[columna] - solucion[i]))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
