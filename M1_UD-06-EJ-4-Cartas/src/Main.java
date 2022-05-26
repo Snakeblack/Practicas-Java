@@ -4,13 +4,13 @@ public class Main {
         Mazo mazo = baraja.getMazo();
         System.out.println(mazo.toString());
 
-        mazo.setAlgoritmo(new OrdPalNumInc());
-        mazo.ordena();
-        System.out.println(mazo.toString());
-
-        mazo.setAlgoritmo(new OrdPalNumDec());
-        mazo.ordena();
-        System.out.println(mazo.toString());
+//        mazo.setAlgoritmo(new OrdPalNumInc());
+//        mazo.ordena();
+//        System.out.println(mazo.toString());
+//
+//        mazo.setAlgoritmo(new OrdPalNumDec());
+//        mazo.ordena();
+//        System.out.println(mazo.toString());
 
         mazo.setAlgoritmo(new OrdNumIncPal());
         mazo.ordena();

@@ -4,6 +4,7 @@ public class OrdPalNumDec extends AlgoritmoOrdenacion {
     @Override
     public void ordena(List listaCartas) {
         // algoritmo de ordenación
+
     }
 
     public static int comparadorCarta(Carta c1, Carta c2) {

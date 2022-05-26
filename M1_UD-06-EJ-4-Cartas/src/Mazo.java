@@ -8,11 +8,11 @@ public class Mazo {
     private AlgoritmoOrdenacion algoritmo;
 
     public void setAlgoritmo(AlgoritmoOrdenacion algoritmo) {
-        // Establece el algoritmo de ordenación
+        this.algoritmo = algoritmo;
     }
 
     public void ordena() {
-        // Le pide al algoritmo que ordene
+        algoritmo.ordena(cartas);
     }
 
     /**
