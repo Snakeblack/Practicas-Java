@@ -1,11 +1,11 @@
 public class Profesor extends PDI {
     // ¿atributos?
-    private double eurosHora;
-    private double hora;
-    private double semana;
-    private String categoria;
-    private int sexenios;
-    private double eurosSexenio;
+    private final double eurosHora;
+    private final double hora;
+    private final double semana;
+    private final String categoria;
+    private final int sexenios;
+    private final double eurosSexenio;
 
     public Profesor(String nombre, String dni, int sexenios) {
         super(nombre, dni);
@@ -20,5 +20,14 @@ public class Profesor extends PDI {
     // ¿métodos?
     public double calcularSueldo() {
         return (this.eurosHora * this.hora * this.semana ) + (this.eurosSexenio * this.sexenios);
+    }
+
+    public String getCategoria() {
+        return this.categoria;
+    }
+
+    @Override
+    public String toString() {
+        return categoria + ": " + nombre + " - " + dni + " - sueldo: " + calcularSueldo();
     }
 }
