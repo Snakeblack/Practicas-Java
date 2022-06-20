@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.ArrayList;
 
 public class OrdPalNumInc extends AlgoritmoOrdenacion {
     @Override
@@ -16,7 +17,7 @@ public class OrdPalNumInc extends AlgoritmoOrdenacion {
                 } 
             }
         }
-        System.out.println(listaOrdenada.toString());
+        System.out.println(listaOrdenada.toString() + "\n");
     }
 
     public static int comparadorCarta(Carta c1, Carta c2) {
