@@ -29,3 +29,16 @@ public class OrdNumIncPal extends AlgoritmoOrdenacion {
         }
     }
 }
+
+// public static void ordenar(String[] numeros){
+//     String aux;
+//     for(int i=0; i<numeros.length-1; i++){
+//         for(int j=0; j<numeros.length-1; j++){
+//             if(numeros[j].compareTo(numeros[j+1])>0){
+//                 aux=numeros[j];
+//                 numeros[j]=numeros[j+1];
+//                 numeros[j+1]=aux;
+//             }
+//         }
+//     }
+// }
