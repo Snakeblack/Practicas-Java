@@ -6,7 +6,7 @@ public final class Baraja {
     public static final String[] numeros ={"AS", "DOS", "TRES", "CUATRO",
             "CINCO", "SEIS", "SIETE", "SOTA", "CABALLO", "REY"};
     public static final String[] palos ={"ESPADAS", "COPAS", "BASTOS", "OROS"};
-    private List cartas = new ArrayList();
+    public List cartas = new ArrayList();
 
     public Baraja() {
         for (String palo : palos) {
@@ -29,4 +29,6 @@ public final class Baraja {
         }
         return m;
     }
+
+    
 }
