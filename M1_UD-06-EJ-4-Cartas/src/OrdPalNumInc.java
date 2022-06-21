@@ -28,7 +28,6 @@ public class OrdPalNumInc extends AlgoritmoOrdenacion {
     public static int comparadorCarta(Carta c1, Carta c2) {
         if (c1.getNumero().equals(c2.getNumero()) && c1.getPalo().equals(c2.getPalo()))
             return 1;
-        else
-            return 0;
+        return 0;
     }
 }
