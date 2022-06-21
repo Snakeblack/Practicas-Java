@@ -1,49 +1,48 @@
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
 
-        List<Programador> Programadores = new ArrayList<Programador>();
+    public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
+        System.out.println("Equipo de Java");
+        System.out.println("Ingrese nombre del equipo");
+        String nombreEquipo = sc.next();
+        System.out.println("Ingrese universidad del equipo");
+        String universidad = sc.next();
+        System.out.println("Ingrese el lenguaje del equipo");
+        String lenguaje = sc.next();
+        System.out.println("Ingrese tamano del equipo");
+        int tamanoEquipo;
+        try {
+            tamanoEquipo = sc.nextInt();
+        } catch (Exception e) {
+            throw new RuntimeException("El tamano del equipo debe ser un numero");
+        }
 
-        System.out.println("Introduce el nombre de la universidad: ");
-        String nombreUniversidad = sc.nextLine();
+        Equipo equipo = new Equipo(nombreEquipo, universidad, lenguaje, tamanoEquipo);
 
-        System.out.println("Introduce el nombre del equipo de programadores: ");
-        String nombreEquipo = sc.nextLine();
+        for (int i = 0; i < tamanoEquipo; i++) {
 
-        System.out.println("Ingrese el lenguaje de programacion que utiliza el equipo: ");
-        String lenguaje = sc.nextLine();
-
-        System.out.println("Cuantos programadores quiere añadir al equipo: ");
-        int numeroProgramadores = sc.nextInt();
-
-        for (int i = 0; i < numeroProgramadores; i++) {
-            System.out.println("Introduce el nombre del programador: ");
-            String nombre = sc.nextLine();
-
-            System.out.println("Introduce los apellidos del programador: ");
-            String apellidos = sc.nextLine();
+            System.out.println("\nIngrese nombre del programador " + (i + 1));
+            String nombreProgramador = sc.next();
+            System.out.println("\nIngrese apellido del programador " + (i + 1));
+            String apellidoProgramador = sc.next();
 
             try {
-                Programador.validarAtributos(nombre, apellidos);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                equipo.programador(nombreProgramador, apellidoProgramador);
+            } catch (Exception e) {
+                System.out.println(e);
             }
 
-            Programadores.add(new Programador(nombre, apellidos));
         }
-        
-        sc.close();
-        
-        EquipoDeProgramadores equipo = new EquipoDeProgramadores(nombreUniversidad, nombreEquipo, lenguaje);
-        
-        System.out.println(equipo.toString());
 
-        System.out.println(equipo.equipoCompleto());
-        
+        System.out.println("\n" + equipo.toString());
+
+        if (equipo.isCompleto())
+            System.out.println("El equipo esta completo");
+        else
+            System.out.println("El equipo aun no esta completo");
+
     }
 }

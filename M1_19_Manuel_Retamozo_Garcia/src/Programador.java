@@ -1,20 +1,10 @@
-public class Programador {
+public class Programador  {
     private String nombre;
-    private String apellidos;
+    private String apellido;
 
-    public Programador(String nombre, String apellidos) {
+    public Programador(String nombre, String apellido) {
         this.nombre = nombre;
-        this.apellidos = apellidos;
-    }
-
-    public static void validarAtributos(String nombre, String apellidos) {
-        if (!nombre.matches("[a-zA-Z ]+") || !apellidos.matches("[a-zA-Z ]+")) {
-            throw new IllegalArgumentException("Los atributos nombre y apellidos deben ser solo texto");
-        }
-        if (nombre.length() > 20 || apellidos.length() > 20) {
-            throw new IllegalArgumentException(
-                    "Los campos String no deben tener una longitud igual o superior a 20 caracteres");
-        }
+        this.apellido = apellido;
     }
 
     public String getNombre() {
@@ -25,17 +15,37 @@ public class Programador {
         this.nombre = nombre;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void nombre(String nombre) throws Exception {
+        if (nombre.matches("[0-9]*")) {
+            throw new Exception("No se permiten datos numericos");
+        } else if (nombre.length() > 20) {
+            throw new Exception("El campo String no puede contener mas de 20 caracteres");
+        } else {
+            System.out.println("\nEl nombre ingresado es: " + nombre);
+        }
+    }
+
+    public void apellido(String apellido) throws Exception {
+        if (apellido.matches("[0-9]*")) {
+            throw new Exception("No se permiten datos numericos");
+        } else if (apellido.length() > 20) {
+            throw new Exception("El campo String no puede contener mas de 20 caracteres");
+        } else {
+            System.out.println("El apellido ingresado es: " + apellido);
+        }
     }
 
     @Override
     public String toString() {
-        return "\n\t\t[\n\t\t\tapellidos: " + apellidos + ",\n\t\t\tnombre:" + nombre + "\n\t\t]\n\t";
+        return "\n\t[ Nombre: " + nombre + ", Apellido: " + apellido + " ]";
     }
 
     
