@@ -1,19 +1,18 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Collections;
 
 public class OrdNumIncPal extends AlgoritmoOrdenacion {
 
     @Override
     public void ordena(List listaCartas) {
-        // Baraja baraja = new Baraja();
         List<Carta> listaOrdenada = new ArrayList<>();
         List<Carta> mazoOrdenado = new ArrayList<>();
-        List cartasAux = new ArrayList(mazoOrdenado);
-
         String[] numerosBaraja = Baraja.numeros;
         String[] palosBaraja = Baraja.palos;
-
+        
+        Arrays.sort(palosBaraja, String.CASE_INSENSITIVE_ORDER);
+        
         for (String numero : numerosBaraja) {
             for (String palo : palosBaraja) {
                 listaOrdenada.add(new Carta(numero, palo));
@@ -24,14 +23,14 @@ public class OrdNumIncPal extends AlgoritmoOrdenacion {
             for (int j = 0; j < listaCartas.size(); j++) {
                 int resultado = comparadorCarta(listaOrdenada.get(i),(Carta) listaCartas.get(j));
 
-                if(resultado == 1){
+                if(resultado == 1){ 
                     mazoOrdenado.add(listaOrdenada.get(i));
                 }
             }
         }
 
+        System.out.println("OrdNumIncPal: " + mazoOrdenado.toString() + "\n");
         
-        System.out.println(mazoOrdenado.toString());
     }
     
 

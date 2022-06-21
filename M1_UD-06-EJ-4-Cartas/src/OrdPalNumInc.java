@@ -1,24 +1,37 @@
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class OrdPalNumInc extends AlgoritmoOrdenacion {
     @Override
     public void ordena(List listaCartas) {
-        Baraja baraja = new Baraja();
         List<Carta> listaOrdenada = new ArrayList<>();
-
+        List<Carta> mazoOrdenado = new ArrayList<>();
+        String[] numerosBaraja = Baraja.numeros;
+        String[] palosBaraja = Baraja.palos;
         
-        for (int i = 0; i < 40; i++) {
-            for (int j = 0; j < listaCartas.size(); j++) {
-                int resultado = comparadorCarta(baraja.getCarta(i),(Carta) listaCartas.get(j));
-
-                if(resultado == 1){
-                    listaOrdenada.add(baraja.getCarta(i));
-                } 
+        Arrays.sort(palosBaraja, String.CASE_INSENSITIVE_ORDER);
+        
+        for (String palo : palosBaraja) {
+            for (String numero : numerosBaraja) {
+                listaOrdenada.add(new Carta(numero, palo));
             }
         }
-        System.out.println(listaOrdenada.toString() + "\n");
+        
+        for (int i = 0; i < listaOrdenada.size(); i++) {
+            for (int j = 0; j < listaCartas.size(); j++) {
+                int resultado = comparadorCarta(listaOrdenada.get(i),(Carta) listaCartas.get(j));
+
+                if(resultado == 1){ 
+                    mazoOrdenado.add(listaOrdenada.get(i));
+                }
+            }
+        }
+
+        System.out.println("OrdPalNumInc: " + mazoOrdenado.toString() + "\n");
+        
     }
+    
 
     public static int comparadorCarta(Carta c1, Carta c2) {
         if (c1.getNumero().equals(c2.getNumero()) && c1.getPalo().equals(c2.getPalo())) {

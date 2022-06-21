@@ -11,13 +11,12 @@ public class Main {
        mazo.ordena();
 //        System.out.println(mazo.toString());
 //
-//        mazo.setAlgoritmo(new OrdPalNumDec());
-//        mazo.ordena();
+       mazo.setAlgoritmo(new OrdPalNumDec());
+       mazo.ordena();
 //        System.out.println(mazo.toString());
 
         mazo.setAlgoritmo(new OrdNumIncPal());
         mazo.ordena();
-        //System.out.println(baraja.cartas.toString());
         //System.out.println(mazo.toString());
         
     }
