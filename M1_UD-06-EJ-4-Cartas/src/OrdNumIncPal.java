@@ -6,8 +6,8 @@ public class OrdNumIncPal extends AlgoritmoOrdenacion {
 
     @Override
     public void ordena(List listaCartas) {
-        List<Carta> listaOrdenada = new ArrayList<>();
-        List<Carta> mazoOrdenado = new ArrayList<>();
+        List listaOrdenada = new ArrayList();
+        List mazoOrdenado = new ArrayList();
         String[] numerosBaraja = Baraja.numeros;
         String[] palosBaraja = Baraja.palos;
         
@@ -21,16 +21,15 @@ public class OrdNumIncPal extends AlgoritmoOrdenacion {
         
         for (int i = 0; i < listaOrdenada.size(); i++) {
             for (int j = 0; j < listaCartas.size(); j++) {
-                int resultado = comparadorCarta(listaOrdenada.get(i),(Carta) listaCartas.get(j));
+                int resultado = comparadorCarta((Carta) listaOrdenada.get(i),(Carta) listaCartas.get(j));
 
                 if(resultado == 1){ 
                     mazoOrdenado.add(listaOrdenada.get(i));
                 }
             }
         }
-
-        System.out.println("OrdNumIncPal: " + mazoOrdenado.toString() + "\n");
-        
+        listaCartas.clear();
+        listaCartas.addAll(mazoOrdenado);
     }
     
 
