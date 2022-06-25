@@ -7,7 +7,6 @@ public class Equipo {
     private String universidad;
     private String lenguaje;
     private int tamanoEquipo;
-    private int contador = 0;
     List listaProgramadores = new ArrayList();
 
     public Equipo(String nombreEquipo, String universidad, String lenguaje, int tamanoEquipo) {
@@ -49,39 +48,37 @@ public class Equipo {
         this.tamanoEquipo = tamanoEquipo;
     }
 
-    public int getContador() {
-        return contador;
+    public void isCompleto() {
+        if (tamanoEquipo == 3)
+            System.out.println("El equipo esta completo");
+        else if (tamanoEquipo > 3)
+            System.out.println("En el equipo sobra gente");
+        else
+            System.out.println("El equipo aun no esta completo");
     }
 
-    public void setContador(int contador) {
-        this.contador = contador;
-    }
-
-    public boolean isCompleto() {
-        if (contador == 3) {
-            return true;
+    public static int tamanoValidator(int tamanoEquipo) throws Exception {
+        if (tamanoEquipo >= 2 && tamanoEquipo <= 3) {
+            return 1;
         } else {
-            return false;
+            throw new Exception("\n[!]...El tamano del equipo debe de ser de minimo 2 y maximo 3");
         }
     }
 
     public void programador(String nombre, String apellido) throws Exception {
-        if (contador < tamanoEquipo) {
+        if (listaProgramadores.size() <= 3) {
             Programador programador = new Programador(nombre, apellido);
-            contador++;
-            System.out.println("\nProgramador agregado");
-            programador.nombre(nombre);
-            programador.apellido(apellido);
             listaProgramadores.add(programador);
+            System.out.println("\nProgramador agregado");
         } else {
-            throw new Exception("El equipo esta lleno");
+            throw new Exception("[!]...El equipo esta lleno");
         }
     }
 
     @Override
     public String toString() {
         return "Datos del Equipo:\n\t[Universidad: " + universidad + ",\n\tNombre del equipo: " + nombreEquipo
-                + ",\n\tLenguaje de Programacíon: " + tamanoEquipo + ",\n\tTamanio del equipo: " + lenguaje + " ]" +
-                "\nEquipo: " + listaProgramadores.toString();
+                + ",\n\tLenguaje de Programacion: " + lenguaje + ",\n\tTamanio del equipo: " + tamanoEquipo + " ]\n" +
+                "Equipo: " + listaProgramadores.toString()+ "\n";
     }
 }
