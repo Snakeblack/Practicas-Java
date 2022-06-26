@@ -1,15 +1,13 @@
 import java.util.Comparator;
 
+/**
+ * Compara dos cartas segun lo pasado como parametro al metodo ordena()
+ */
 public class OrdNumAscPalList implements Comparator<Carta> {
-
-    // primero por números strings (de forma ascendente) y luego por palos (por orden de lista)
     @Override
     public int compare(Carta carta1, Carta carta2) {
-        int resultado = carta1.getNumero().compareTo(carta2.getNumero());
-        if (resultado == 0) {
-            resultado = carta1.getPalo().compareTo(carta2.getPalo());
-        }
-        return resultado;
+        if (carta1.getNumero().equals(carta2.getNumero()) && carta1.getPalo().equals(carta2.getPalo()))
+            return 1;
+        return 0;
     }
-
 }

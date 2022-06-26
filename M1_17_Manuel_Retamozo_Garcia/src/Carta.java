@@ -1,4 +1,3 @@
-
 public final class Carta implements Comparable<Carta> {
     private final String numero;
     private final String palo;
@@ -21,7 +20,7 @@ public final class Carta implements Comparable<Carta> {
     public String getPalo() {
         return palo;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 5;
@@ -57,13 +56,13 @@ public final class Carta implements Comparable<Carta> {
         return numero + " " + palo;
     }
 
+    /**
+     * Compara dos cartas según el orden natural de las cartas
+     */
     @Override
     public int compareTo(Carta carta) {
-        // orden primero por palos (por orden de lista) y luego por números strings (de forma ascendente) 
-        if (this.palo.compareTo(carta.palo) == 0) {
-            return this.numero.compareTo(carta.numero);
-        } else {
-            return this.palo.compareTo(carta.palo);
-        }
+        if (this.numero.equals(carta.getNumero()) && this.palo.equals(carta.getPalo()))
+            return 1;
+        return 0;
     }
 }

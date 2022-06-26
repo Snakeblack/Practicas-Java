@@ -6,18 +6,37 @@ import java.util.List;
 public class Mazo {
 
     List cartas;
-    
-    // orden primero por palos (por orden de lista) y luego por números strings (de forma ascendente) 
-    public void ordena() { 
-        Collections.sort(cartas);
+
+    /**
+     * Ordena el mazo según el orden natural de las cartas
+     */
+    public void ordena() {
+        String[] numeros = Baraja.numeros;
+        String[] palos = Baraja.palos;
+        List<Carta> cartasOrdenadas = new ArrayList<Carta>();
+
+        for (String palo : palos)
+            for (String numero : numeros)
+                cartasOrdenadas.add(new Carta(numero, palo));
+
+        Collections.sort(cartasOrdenadas);
+        this.cartas = cartasOrdenadas;
     }
 
+    /**
+     * Ordena según un comparator que se pasa como parametro
+     */
     public void ordena(Comparator c) {
-        Collections.sort(cartas, c);
-    }
+        String[] numeros = Baraja.numeros;
+        String[] palos = Baraja.palos;
+        List<Carta> cartasOrdenadas = new ArrayList<Carta>();
+        for (String numero : numeros)
+            for (String palo : palos)
+                cartasOrdenadas.add(new Carta(numero, palo));
 
-    // ordena según un comparator que se pasa como parametro
-    
+        Collections.sort(cartasOrdenadas, c);
+        this.cartas = cartasOrdenadas;
+    }
 
     /**
      * Crea un mazo de cartas vacío
@@ -32,10 +51,10 @@ public class Mazo {
      * @param posicion La posición de la carta
      * @return La carta de dicha posición
      * @exception IllegalArgumentException si la posición no es válida en la
-     * lista
+     *                                     lista
      */
     public Carta getCarta(int posicion) {
-        return (Carta)cartas.get(posicion);
+        return (Carta) cartas.get(posicion);
     }
 
     /**
@@ -43,16 +62,16 @@ public class Mazo {
      * después de la posición dada avanzan una posición
      *
      * @param posicion Posición a añadir
-     * @param carta Carta a añadir
+     * @param carta    Carta a añadir
      * @exception IllegalArgumentException si la posición no es válida en la
-     * lista
+     *                                     lista
      */
     public void insertarCarta(int posicion, Carta carta) {
         List<Carta> aux = new ArrayList<>();
 
         // Extraemos las cartas desde la posición dada a un array auxiliar
         for (int i = cartas.size() - 1; i >= posicion; i--) {
-            aux.add((Carta)cartas.remove(i));
+            aux.add((Carta) cartas.remove(i));
         }
 
         // Insertamos la carta pasada por parámetro
@@ -71,10 +90,10 @@ public class Mazo {
      * @param posicion Posición de extracción
      * @return Carta que estaba en dicha posición
      * @exception IllegalArgumentException si la posición no es válida en la
-     * lista
+     *                                     lista
      */
     public Carta extraerCarta(int posicion) {
-        return (Carta)cartas.remove(posicion);
+        return (Carta) cartas.remove(posicion);
     }
 
     /**
@@ -83,7 +102,7 @@ public class Mazo {
      * @return La carta en la cima del mazo
      */
     public Carta extraerCarta() {
-        return (Carta)cartas.remove(cartas.size() - 1);
+        return (Carta) cartas.remove(cartas.size() - 1);
     }
 
     /**
@@ -113,4 +132,3 @@ public class Mazo {
         return "" + cartas;
     }
 }
-
