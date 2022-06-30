@@ -1,62 +1,41 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class Main {
-    public static void main(String[] args) {
-        /*
-         * Primera parte del ejercicio:
-         */
-        String nameNewFile = "ejercicio.txt";
+    public static void main(String[] args) throws IOException {
+        /* Para este ejercicio se pide en primer lugar, crear un programa que escriba tres veces el valor “1” en un archivo, y después seis veces el valor “2”. Luego se mostrará el contenido del archivo por pantalla.
 
-        try (
-                BufferedWriter newFile = new BufferedWriter(new FileWriter(new File(nameNewFile)));) {
-
-            for (int i = 0; i < 3; i++) {
-                newFile.write("1");
-            }
-            newFile.newLine();
-            for (int i = 0; i < 6; i++) {
-                newFile.write("2");
-            }
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-        try (
-                BufferedReader readFile = new BufferedReader(new FileReader(new File(nameNewFile)));) {
-
-            String line = null;
-
-            while ((line = readFile.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        La segunda parte de este ejercicio consiste en hacer, que todos los valores “2” del archivo se sustituyan por “3”, mostrándose de nuevo por pantalla el contenido del archivo. Finalmente cerramos el archivo y el programa termina
+        */
+        String nombreFichero = "fichero.txt";
+        Fichero fichero = new Fichero(nombreFichero);
+        Editor editor = new Editor(fichero);
 
         /*
-         * Segunda parte del ejercicio:
+         * Crea los contenidos pedidos en el enunciado.
          */
-        // La segunda parte de este ejercicio consiste en hacer, que todos los valores
-        // “2” del archivo se sustituyan por “3”, mostrándose de nuevo por pantalla el
-        // contenido del archivo. Finalmente cerramos el archivo y el programa termina
-        try (
-                BufferedReader readFile = new BufferedReader(new FileReader(new File(nameNewFile)));
-                PrintWriter writeFile = new PrintWriter(nameNewFile);) {
+        String primerContenido = "";
+        String segundoContenido = "";
 
-            int c;
-
-            while ((c = readFile.read()) != -1) {
-                writeFile.write(c == '2' ? '3' : (char) c);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        for (int i = 0; i < 3; i++) {
+            primerContenido += "1";
         }
+
+        for (int i = 0; i < 6; i++) {
+            segundoContenido += "2";
+        }
+        
+        /*
+         * Estructura del programa segun el ejercicio. 
+         */
+
+         // Parte 1
+        editor.crearFichero();
+        editor.anadirFichero(primerContenido, nombreFichero);
+        editor.anadirFichero(segundoContenido, nombreFichero);
+        System.out.println(editor.abrirFichero(nombreFichero));
+
+        // Parte 2
+        editor.modificarFichero(nombreFichero, "2", "3");
+        System.out.println(editor.abrirFichero(nombreFichero));
     }
 }
